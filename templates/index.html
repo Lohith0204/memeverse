@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memeverse | Modern Meme Web App</title>
+    <meta
+        name="description"
+        content="Modern meme web application built using Flask and Tailwind CSS featuring async API loading, animated UI, meme history, likes system, and real-time sharing capabilities."
+    />
+    <meta property="og:title" content="Memeverse" />
+    <meta
+        property="og:description"
+        content="Modern meme web application built using Flask and Tailwind CSS featuring async API loading, animated UI, meme history, likes system, and real-time sharing capabilities."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/static/Memeverse-logo.png" />
+    <meta property="og:url" content="https://your-live-demo-url.onrender.com" />
+    <link rel="icon" type="image/png" href="/static/Memeverse-logo.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body class="theme-transition">
+    <div class="theme-toggle-container">
+        <label class="theme-toggle-wrapper" for="theme-checkbox" aria-label="Toggle theme">
+            <input type="checkbox" id="theme-checkbox" class="theme-checkbox" />
+            <span class="theme-slider">
+                <span class="theme-knob"></span>
+            </span>
+        </label>
+    </div>
+
+    <main class="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center justify-center px-4 py-10 sm:px-6">
+        <header class="mb-6 text-center">
+            <h1 class="logo-text">Memeverse</h1>
+            <p class="subtitle-text">Fresh memes. Smooth experience. Zero page reloads.</p>
+        </header>
+
+        <section class="card-container" aria-live="polite">
+            <div class="mb-4 flex items-center justify-between gap-3">
+                <div>
+                    <h2 class="text-xl font-semibold" id="meme-title">Loading meme...</h2>
+                    <p class="subtitle-text">Subreddit: <span id="meme-subreddit" class="font-medium">...</span></p>
+                </div>
+                <button
+                    id="history-btn"
+                    type="button"
+                    class="btn-secondary-alt"
+                    aria-label="Open meme history"
+                >
+                    History
+                </button>
+            </div>
+
+            <div class="meme-container">
+                <div id="skeleton" class="skeleton h-[260px] w-full sm:h-[420px]"></div>
+                <img
+                    id="meme-image"
+                    src=""
+                    alt="Meme image"
+                    class="hidden max-h-[70vh] w-full object-contain opacity-0"
+                    loading="lazy"
+                />
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-5">
+                <button
+                    id="refresh-btn"
+                    type="button"
+                    class="btn-primary col-span-2 sm:col-span-1"
+                    aria-label="Load a new meme"
+                >
+                    <span id="refresh-text">Refresh</span>
+                    <span id="refresh-spinner" class="spinner hidden" aria-hidden="true"></span>
+                </button>
+
+                <button id="like-btn" type="button" class="btn-secondary" aria-label="Like meme">♡ Like</button>
+                <button id="share-btn" type="button" class="btn-secondary" aria-label="Share meme">Share</button>
+                <button id="copy-btn" type="button" class="btn-secondary" aria-label="Copy meme link">Copy Link</button>
+                <button id="timer-toggle-btn" type="button" class="btn-secondary" aria-label="Toggle auto refresh">Auto: ON</button>
+            </div>
+
+            <p class="countdown-text" id="countdown-text">Next meme in 30s</p>
+        </section>
+    </main>
+
+    <div id="history-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="history-heading">
+        <div class="modal-content">
+            <div class="mb-4 flex items-center justify-between">
+                <h3 id="history-heading" class="text-lg font-semibold">Recently Viewed Memes</h3>
+                <button id="close-history-btn" type="button" class="modal-close-btn" aria-label="Close history modal">✕</button>
+            </div>
+            <div id="history-grid" class="grid max-h-[60vh] grid-cols-2 gap-3 overflow-y-auto pr-1 sm:grid-cols-3"></div>
+            <p id="history-empty" class="subtitle-text">No memes viewed yet.</p>
+        </div>
+    </div>
+
+    <div id="toast-container" class="pointer-events-none fixed bottom-4 right-4 z-40 flex w-[min(95vw,320px)] flex-col gap-2"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
