@@ -148,6 +148,7 @@ memeverse/
 │   ├── js/
 │   │   └── app.js
 │   └── favicon.ico
+├── LICENSE
 │
 └── docs/
     └── screenshots/
